@@ -1,25 +1,64 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Layout, Divider } from 'antd';
+import Copyright from 'copyright';
+import './App.less';
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+
+import {
+  MenuHeader as Header,
+  FooterIcons,
+} from './components';
+
+import {
+  Home,
+  Notebook,
+  NotFound
+} from './pages';
+
+const { Footer } = Layout;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Layout className="App">
+        <Header className="App-header"
+          style={{
+            height: '40px',
+            minWidth: '400px'
+          }}>
+        </Header>
+
+        <div className="App-content">
+          <Switch>            
+            <Route path='/home' component={Home}></Route>
+            <Route path='/notebook' component={Notebook}></Route>
+            <Route path='/404' component={NotFound} />
+            <Redirect exact  from='/' to='/home'></Redirect>
+            <Redirect to='/404'></Redirect>
+          </Switch>
+        </div>
+
+        <Footer className="App-footer">
+          <Divider />
+          <FooterIcons scriptUrl="//at.alicdn.com/t/font_1653660_9x47o3b9g09.js"
+            icons={[
+              {
+                type: "icon-github",
+                href: "https://github.com/"
+              },
+              {
+                type: "icon-telegram",
+                href: "https://telegram.org/"
+              }
+            ]} />
+          <div>
+            {
+              Copyright("yaoyaoqienao.top")
+            }
+          </div>
+        </Footer>
+      </Layout >
+    </Router>
   );
 }
 
