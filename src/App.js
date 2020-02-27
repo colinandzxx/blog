@@ -15,11 +15,18 @@ import {
   NotFound
 } from './pages';
 
+import { Helmet } from "react-helmet";
+
 const { Footer } = Layout;
 
 function App() {
   return (
     <Router>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>yo! yo! check it out!</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <Layout className="App">
         <Header className="App-header"
           style={{
@@ -29,11 +36,11 @@ function App() {
         </Header>
 
         <div className="App-content">
-          <Switch>            
+          <Switch>
             <Route path='/home' component={Home}></Route>
             <Route path='/notebook' component={Notebook}></Route>
             <Route path='/404' component={NotFound} />
-            <Redirect exact  from='/' to='/home'></Redirect>
+            <Redirect exact from='/' to='/home'></Redirect>
             <Redirect to='/404'></Redirect>
           </Switch>
         </div>
