@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './svg404.less';
-import Svg_404 from './svg404';
+import Svg404 from './svg404';
 
 /*
 前台404页面
@@ -18,9 +18,8 @@ export default class NotFound extends Component {
 	}
 
 	render() {
-		console.log(Svg_404);
 		return (
-			<Svg_404 />		
+			<Svg404 />		
 		)			
 	}
 }
