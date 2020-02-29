@@ -44,10 +44,17 @@ export default class MenuHeader extends Component {
                             }}
                         >
                             <Menu.Item key="1">
-                                <Link to="/notebook">notebook</Link>
-                                </Menu.Item>
-                            <Menu.Item key="2">nav 2</Menu.Item>
-                            <Menu.Item key="3">nav 3</Menu.Item>
+                                <a href="home#">Home</a>
+                            </Menu.Item>
+                            <Menu.Item key="2">
+                                <a href="home#About">About</a>
+                            </Menu.Item>
+                            <Menu.Item key="3">
+                                <a href="home#CaseStudy">Case Study</a>
+                            </Menu.Item>
+                            <Menu.Item key="4">
+                                <Link to="/notebook">Notebook</Link>
+                            </Menu.Item>
                         </Menu>
                     </Col>
                     <Col span={4} />

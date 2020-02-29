@@ -7,12 +7,12 @@ import preProcStyle from "./preProcStyle.js";
 class AnimSquare extends Component {
     selfRef = React.createRef();
 
-    constructor(props) {
-        super(props)
-        if (this.props.style.width) {
-            this.props.style.height = this.props.style.width;
-        }
-    }
+    // constructor(props) {
+    //     super(props)
+    //     if (this.props.style.width) {
+    //         this.props.style.height = this.props.style.width;
+    //     }
+    // }
 
     componentDidMount() {
         // var basicTimeline = anime.timeline();
@@ -28,6 +28,9 @@ class AnimSquare extends Component {
     }
 
     render() {
+        if (this.props.style.width) {
+            this.props.style.height = this.props.style.width;
+        }
         return <div ref={this.selfRef} 
         className="square" 
         {...this.props} />;
