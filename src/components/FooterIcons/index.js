@@ -16,7 +16,7 @@ export default class index extends Component {
                     this.props.icons.map((icon) => {
                         const {type, href} = icon;
                         return (
-                            <li>
+                            <li key={"footer-icon-li-" + type}>
                                 <a href={href}>
                                     <IconFont className="footer-icon-font" type={type} />
                                 </a>
