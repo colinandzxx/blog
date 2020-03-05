@@ -81,30 +81,26 @@ export default class About extends Component {
                                 </div>
                             </div> */}
 
-                            <Row>
-                                <Col md={12} sm={24} xs={24} span={12}>
-                                    <Row>
-                                        <Col className="info_icon" span={4}>
-                                            <IconFont className="footer-icon-font" type='icon-personalcenterclick' />
-                                        </Col>
-                                        <Col className="info_text" span={20} style={{textAlign:"left"}}>
-                                            <span>Name</span>
-                                            <h5>aiyowei</h5>
-                                        </Col>
-                                    </Row>
-                                </Col>
-                                <Col md={12} sm={24} xs={24} span={12}>
-                                    <Row>
-                                        <Col className="info_icon" span={4}>
-                                            <IconFont className="footer-icon-font" type='icon-personalcenterclick' />
-                                        </Col>
-                                        <Col className="info_text" span={20} style={{textAlign:"left"}}>
-                                            <span>Email</span>
-                                            <h5>aiyowei@fortest.com</h5>
-                                        </Col>
-                                    </Row>
-                                </Col>
-                            </Row>
+                            <div>
+                                <Row>
+                                    <Col className="info_icon" span={4} style={{ textAlign: "left" }} md={4} sm={24} xs={24}>
+                                        <IconFont className="footer-icon-font" type='icon-personalcenterclick' style={{background:"#f00"}} />
+                                    </Col>
+                                    <Col className="info_text" span={20} style={{ textAlign: "left" }} md={20} sm={24} xs={24}>
+                                        <span>Name</span>
+                                        <h5>aiyowei</h5>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col className="info_icon" span={4} style={{ textAlign: "left" }} md={4} sm={24} xs={24}>
+                                        <IconFont className="footer-icon-font" type='icon-personalcenterclick' />
+                                    </Col>
+                                    <Col className="info_text" span={20} style={{ textAlign: "left" }} md={20} sm={24} xs={24}>
+                                        <span>Email</span>
+                                        <h5>aiyowei@fortest.com</h5>
+                                    </Col>
+                                </Row>
+                            </div>
 
                             <div className="about_skill_area">
                                 <div className="single_bar">
