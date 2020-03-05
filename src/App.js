@@ -38,17 +38,17 @@ class App extends Component {
 
           <div className="App-content">
             <Switch>
-              <Route path='/home' component={Home}></Route>
+              <Route path='/' component={Home} exact></Route>
               <Route path='/notebook' component={Notebook}></Route>
               <Route path='/404' component={NotFound} />
-              <Redirect exact from='/' to='/home'></Redirect>
+              <Redirect from='/home' to='/' exact></Redirect>
               <Redirect to='/404'></Redirect>
             </Switch>
           </div>
 
           <Footer className="App-footer">
             <Divider />
-            <FooterIcons scriptUrl="//at.alicdn.com/t/font_1653660_9x47o3b9g09.js"
+            <FooterIcons scriptUrl="//at.alicdn.com/t/font_1653660_pzl0t4uvxm.js"
               icons={[
                 {
                   type: "icon-github",

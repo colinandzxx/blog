@@ -1,26 +1,40 @@
 import React, { Component } from 'react'
 import "./index.less";
 import { NavLink as Link } from "react-router-dom"
-import { Menu, Row, Col, Layout, Button } from "antd";
-import ScrollIntoView from 'react-scroll-into-view';
+import { Menu, Row, Col, Layout } from "antd";
 
 import logo from '../../assets/images/menu-header-logo.svg';
 
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { scrollTo } from "../../redux/actions";
 
 
 
 @withRouter
+@connect(
+    null,
+    { scrollTo }
+)
 class MenuHeader extends Component {
-    // constructor(props) {
-    //     super(props)
-    //     const {staticContext, ...rest} = props;
-    // }
-
-    test = (path) => {
-        this.props.history.push(path);
-        // document.querySelector('#TopAnim').scrollIntoView(true);
+    state = {
+        selectedKey: 'Home'
     }
+
+    jumpTo = (path, to) => {
+        this.props.history.push(path);
+        if (to) {
+            this.props.scrollTo(to);
+        } else {
+            this.props.scrollTo('');
+        }
+    }
+
+    handleClick = e => {
+        this.setState({
+            selectedKey: e.key,
+        });
+    };
 
     render() {
         let height = '64px';
@@ -34,13 +48,18 @@ class MenuHeader extends Component {
             }
         }
 
-        const { staticContext, ...rest } = this.props;
-        console.log(this.props.location);
+        const { staticContext, scrollTo, ...rest } = this.props;
+        console.log(this.props.location.pathname);
         return (
             <Layout.Header {...rest}>
                 <Row>
                     <Col span={4}>
-                        <Link to="/" exact>
+                        <Link to="/" onClick={() => {
+                            this.jumpTo('/');
+                            this.setState({
+                                selectedKey: "Home",
+                            })
+                        }} exact>
                             <img src={logo}
                                 className="menu-header-logo"
                                 alt="logo"
@@ -53,35 +72,24 @@ class MenuHeader extends Component {
                     <Col span={16}>
                         <Menu className="menu-header-menu"
                             mode="horizontal"
-                            defaultSelectedKeys={["1"]}
+                            defaultSelectedKeys={["Home"]}
+                            selectedKeys={[this.state.selectedKey]}
+                            onClick={this.handleClick}
                             style={{
                                 height: height,
                                 lineHeight: height
                             }}
                         >
-                            <Menu.Item key="1">
-                                {/* <a href="home#TopAnim">Home</a> */}
-                                {/* {                                    
-                                        this.props.location.pathname === '/home' || this.props.location.pathname === '/' ?
-                                            <ScrollIntoView selector="#TopAnim">Home</ScrollIntoView> : null                                    
-                                } */}
-                                {/* <Button onClick={() => this.props.history.push('/home')}> */}
-                                {/* <ScrollIntoView selector="#TopAnim">Home</ScrollIntoView> */}
-                                {/* </Button> */}
-                                <div onClick={() => this.test('/home')}>Home</div>
+                            <Menu.Item key="Home">
+                                <div onClick={() => this.jumpTo('/')}>Home</div>
                             </Menu.Item>
-                            <Menu.Item key="2">
-                                {/* <a href="home#About">About</a> */}
-                                {/* <Button onClick={() => this.props.history.push('/home')}> */}
-                                {/* <ScrollIntoView selector="#About">About</ScrollIntoView> */}
-                                {/* </Button> */}
-                                <div onClick={() => this.test('/home')}>About</div>
+                            <Menu.Item key="About">
+                                <div onClick={() => this.jumpTo('/', 'About')}>About</div>
                             </Menu.Item>
-                            <Menu.Item key="3">
-                                {/* <a href="home#CaseStudy">Case Study</a> */}
-                                <ScrollIntoView selector="#CaseStudy">CaseStudy</ScrollIntoView>
+                            <Menu.Item key="CaseStudy">
+                                <div onClick={() => this.jumpTo('/', 'CaseStudy')}>CaseStudy</div>
                             </Menu.Item>
-                            <Menu.Item key="4">
+                            <Menu.Item key="Notebook">
                                 <Link to="/notebook">Notebook</Link>
                             </Menu.Item>
                         </Menu>
