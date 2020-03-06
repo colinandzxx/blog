@@ -8,7 +8,7 @@ const aboutContent =
   "这是一啪啦关于我的莫名其妙的奇怪介绍。" +
   "不看也罢，实在不知道写点什么，但是最终还是写了些东西在这里，实在是不好意思啊。" +
   "所以我觉得还是努力地在这里写点什么好了。";
-  
+
 const music = (
 <p style={{textAlign:"center"}}>Code Monkey get up get coffee<br />
 Code Monkey go to job<br />
@@ -102,10 +102,10 @@ export default class About extends Component {
     return (
       <Card id="About" className="aboutContainer">
         <Row >
-          <Col span={9}>
+          <Col span={9} xs={24} sm={24} md={9} lg={9}>
             <img src={testimg} style={{width:"90%", margin:"auto"}}/>
           </Col>
-          <Col span={15}>
+          <Col span={15} xs={24} sm={24} md={15} lg={15}>
             <div className="about-content-box">
               <div className="about-content-title">
                 <h3>Profile</h3>
