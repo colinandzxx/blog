@@ -1,6 +1,6 @@
 .home {
-  width    : 60%;
-  margin   : 0 auto;
+  width: 60%;
+  margin: 0 auto;
   font-size: 1rem;
 
   h1 {
@@ -19,28 +19,28 @@
     // top       : 20vh;
     // left      : 0;
     // right     : 0;
-    width        : 100%;
-    height       : 100%;
-    min-height   : 40rem;
-    text-align   : center;
-    margin       : 5vh auto;
+    width: 100%;
+    height: 100%;
+    min-height: 40rem;
+    text-align: center;
+    margin: 5vh auto;
   }
 
   .cio {
     // font-size: 1.5rem;
-    position    : relative;
-    top         : 15vh;
-    opacity     : 1;
-    transform   : none;
-    width       : 100%;
+    position: relative;
+    top: 15vh;
+    opacity: 1;
+    transform: none;
+    width: 100%;
   }
 
   .anim1 {
-    position : relative;
-    top      : 10vh;
-    opacity  : 1;
+    position: relative;
+    top: 10vh;
+    opacity: 1;
     transform: none;
-    width    : 100%;
+    width: 100%;
   }
 
   .up {
@@ -48,14 +48,14 @@
   }
 
   .clock {
-    font-size  : 3rem;
+    font-size: 3rem;
     font-family: digitalFamliy;
-    margin     : 5vh auto;
+    margin: 5vh auto;
   }
 
   .aboutContainer {
-    margin    : 10vh auto;
-    padding   : 5vh 0;
+    margin: 10vh auto;
+    padding: 5vh 0;
     text-align: center;
 
     .about-content-title {
@@ -63,40 +63,56 @@
     }
 
     .about-content-text {
-      text-align    : left;
+      text-align: left;
       vertical-align: auto;
-      height        : 100%;
+      height: 100%;
     }
 
     .about-icon-font {
-      font-size: 3rem;
-      margin   : .5rem;
-      opacity  : .67;
+      font-size: 2rem;
+      // margin   : auto auto;
+      opacity: 0.67;
     }
 
     .about-icon-font:hover {
       opacity: 1;
     }
 
-    .info_icon {
-      // text-align: left;
-      background-color: red;
-    }
+    .info_item {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
 
-    .info_text {
-      text-align: left;
+      .info_icon {
+        background: red;
+        width: 4rem;
+        height: 4rem;
+        opacity: 0.67;
+        margin: 0.5rem 0.5rem 0.5rem 0;
+        flex-grow: 0;
+      }
+
+      .info_icon:hover {
+        opacity: 1;
+      }
+
+      .info_text {
+        text-align: left;
+        margin: auto 0;
+        flex-grow: 1;
+      }
     }
   }
 
   .carouselContainer {
-    margin    : 10vh auto;
-    padding   : 5vh;
+    margin: 10vh auto;
+    padding: 5vh;
     text-align: center;
 
     .carousel {
       background-color: transparent;
-      text-align      : center;
-      height          : 60vh;
+      text-align: center;
+      height: 60vh;
 
       div {
         height: 100%;
@@ -108,4 +124,16 @@
       }
     }
   }
+}
+
+.lazyIcon {
+  background: blue;
+  padding: auto;
+  width: 4rem;
+  height: 4rem;
+  opacity: 0.67;
+}
+
+.lazyIcon:hover {
+  opacity: 1;
 }

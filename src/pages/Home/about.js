@@ -1,160 +1,112 @@
-import React, { Component } from 'react';
-import {
-    Card,
-    Row,
-    Col,
-    Icon
-} from 'antd';
+import React, { Component } from "react";
+import { Card, Row, Col } from "antd";
+import { LazyIcon, LazyProgress } from "../../components";
 
-const aboutContent = 'It is a long established fact that a reader will \
-be distracted by the readable content of a page when looking at its layout.\
- The point of using Lorem Ipsum is that it has a more-or-less normal distribution.';
+const aboutContent =
+  "It is a long established fact that a reader will" +
+  "be distracted by the readable content of a page when looking at its layout." +
+  " The point of using Lorem Ipsum is that it has a more-or-less normal distribution.";
 
+const iconUrl = "//at.alicdn.com/t/font_1653660_pzl0t4uvxm.js";
 
+const skills = [
+  {
+    name: "HTML5",
+    percent: 60
+  },
+  {
+    name: "CSS3",
+    percent: 60
+  },
+  {
+    name: "React",
+    percent: 60
+  },
+  {
+    name: "C/C++",
+    percent: 100
+  },
+  {
+    name: "Golang",
+    percent: 100
+  },
+  {
+    name: "Rust",
+    percent: 80
+  },
+  {
+    name: "Python",
+    percent: 70
+  }
+];
 
 export default class About extends Component {
-    render() {
-        const IconFont = Icon.createFromIconfontCN({
-            scriptUrl: '//at.alicdn.com/t/font_1653660_pzl0t4uvxm.js'
-        });
+  render() {
+    console.log(skills);
+    return (
+      <Card id="About" className="aboutContainer">
+        <Row>
+          <Col span={9}>aaa</Col>
+          <Col span={15}>
+            <div className="about-content-box">
+              <div className="about-content-title">
+                <h3>Profile</h3>
+                <h2>About Me</h2>
+              </div>
+              <div className="about-content-text">
+                <p>{aboutContent}</p>
+              </div>
 
-        return (
-            <Card id="About" className="aboutContainer">
-                <Row>
-                    <Col span={9}>aaa</Col>
-                    <Col span={15}>
-                        <div className="about-content-box">
-                            <div className="about-content-title">
-                                <span>Profile</span>
-                                <h2>About Me</h2>
-                            </div>
-                            <div className="about-content-text">
-                                <p>{aboutContent}</p>
-                            </div>
-                            {/* <div className="about_information">
-                                <div className="row">
-                                    <div className="col-lg-6">
-                                        <div className="single_info">
-                                            <div className="info_icon">
-                                                <i className="fas fa-user"></i>
-                                            </div>
-                                            <div className="info_text">
-                                                <span>Full Name</span>
-                                                <h5>Minan Alex</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-6">
-                                        <div className="single_info">
-                                            <div className="info_icon">
-                                                <i className="fas fa-phone-alt"></i>
-                                            </div>
-                                            <div className="info_text">
-                                                <span>Phone Number</span>
-                                                <h5>+346-24234-2211</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-6">
-                                        <div className="single_info">
-                                            <div className="info_icon">
-                                                <i className="fab fa-skype"></i>
-                                            </div>
-                                            <div className="info_text">
-                                                <span>Skype</span>
-                                                <h5>minan.123</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-6">
-                                        <div className="single_info">
-                                            <div className="info_icon">
-                                                <i className="fas fa-envelope">
-                                                </i>
-                                            </div>
-                                            <div className="info_text">
-                                                <span>Email</span>
-                                                <h5>demo.minan@gmail.com</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> */}
+              <Row>
+                <Col span={12} xs={24} sm={24} md={24} lg={12}>
+                  <div className="info_item">
+                    <LazyIcon
+                      className="info_icon"
+                      type="icon-personalcenterclick"
+                      scriptUrl={iconUrl}
+                    />
+                    <div className="info_text">
+                      <h3>Name</h3>
+                      <h4>aiyowei</h4>
+                    </div>
+                  </div>
+                </Col>
+                <Col span={12} xs={24} sm={24} md={24} lg={12}>
+                  <div className="info_item">
+                    <LazyIcon
+                      className="info_icon"
+                      type="icon-mail"
+                      scriptUrl={iconUrl}
+                    />
+                    <div className="info_text">
+                      <h3>Mail</h3>
+                      <h4>aiyowei@test.mail</h4>
+                    </div>
+                  </div>
+                </Col>
+              </Row>
 
-                            <div>
-                                <Row type="flex" justify="space-around" align="middle">
-                                    <Col className="info_icon" span={4} md={5} sm={24} xs={24}>
-                                        <IconFont className="about-icon-font" type='icon-personalcenterclick' />
-                                    </Col>
-                                    <Col className="info_text" span={20} md={19} sm={24} xs={24}>
-                                        <span>Name</span>
-                                        <h5>aiyowei</h5>
-                                    </Col>
-                                </Row>
-                                <Row type="flex" justify="space-around" align="middle">
-                                    <Col className="info_icon" span={4} md={4} sm={24} xs={24}>
-                                        <IconFont className="about-icon-font" type='icon-personalcenterclick' />
-                                    </Col>
-                                    <Col className="info_text" span={20} md={20} sm={24} xs={24}>
-                                        <span>Email</span>
-                                        <h5>aiyowei@fortest.com</h5>
-                                    </Col>
-                                </Row>
-                            </div>
-
-                            <div className="about_skill_area">
-                                <div className="single_bar">
-                                    <div className="progress_title">
-                                        <h5>HTML5<span>90%</span></h5>
-                                    </div>
-                                    <div className="progress">
-                                        {/* <div className="progress-bar wow slideInLeft" style="width: 95%; visibility: visible; animation-name: slideInLeft;"> */}
-                                        <div className="progress-bar wow slideInLeft">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="single_bar">
-                                    <div className="progress_title">
-                                        <h5>CSS3<span>85%</span></h5>
-                                    </div>
-                                    <div className="progress">
-                                        {/* <div className="progress-bar wow slideInLeft" style="width: 85%; visibility: visible; animation-name: slideInLeft;"> */}
-                                        <div className="progress-bar wow slideInLeft">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="single_bar">
-                                    <div className="progress_title">
-                                        <h5>PHP<span>70%</span></h5>
-                                    </div>
-                                    <div className="progress">
-                                        {/* <div className="progress-bar wow slideInLeft" style="width: 70%; visibility: visible; animation-name: slideInLeft;"> */}
-                                        <div className="progress-bar wow slideInLeft">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="single_bar">
-                                    <div className="progress_title">
-                                        <h5>Wordpress<span>75%</span></h5>
-                                    </div>
-                                    <div className="progress">
-                                        {/* <div className="progress-bar wow slideInLeft" style="width: 75%; visibility: visible; animation-name: slideInLeft;"> */}
-                                        <div className="progress-bar wow slideInLeft">
-                                        </div></div></div><div className="single_bar">
-                                    <div className="progress_title">
-                                        <h5>Photoshop<span>95%</span></h5>
-                                    </div>
-                                    <div className="progress">
-                                        {/* <div className="progress-bar wow slideInLeft" style="width: 95%; visibility: visible; animation-name: slideInLeft;"> */}
-                                        <div className="progress-bar wow slideInLeft">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </Col>
-                </Row>
-            </Card>
-        )
-    }
+              <div className="about_skill_area">
+                {skills.map((skill, index) => {
+                  return (
+                    <LazyProgress key={"lp-" + index} percent={skill.percent}>
+                      <h4
+                        style={{
+                          width: "4rem",
+                          margin: "auto",
+                          textAlign: "left"
+                        }}
+                      >
+                        {skill.name}
+                      </h4>
+                    </LazyProgress>
+                  );
+                })}
+              </div>
+            </div>
+          </Col>
+        </Row>
+      </Card>
+    );
+  }
 }
