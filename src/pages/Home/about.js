@@ -103,7 +103,7 @@ export default class About extends Component {
       <Card id="About" className="aboutContainer">
         <Row >
           <Col span={9} xs={24} sm={24} md={9} lg={9}>
-            <img src={testimg} style={{width:"90%", margin:"auto"}}/>
+            <img src={testimg} alt="testimg" style={{width:"90%", margin:"auto"}}/>
           </Col>
           <Col span={15} xs={24} sm={24} md={15} lg={15}>
             <div className="about-content-box">
