@@ -3,7 +3,7 @@ import "./index.less";
 import { NavLink as Link } from "react-router-dom"
 import { Menu, Row, Col, Layout } from "antd";
 
-import logo from '../../assets/images/menu-header-logo.svg';
+import logo from '../../assets/images/menu-header-logo.200x200.png';
 
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
