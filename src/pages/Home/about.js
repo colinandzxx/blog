@@ -23,12 +23,12 @@ export default class About extends Component {
                 <Row>
                     <Col span={9}>aaa</Col>
                     <Col span={15}>
-                        <div className="minax_content_box">
-                            <div className="content_title">
+                        <div className="about-content-box">
+                            <div className="about-content-title">
                                 <span>Profile</span>
                                 <h2>About Me</h2>
                             </div>
-                            <div className="about_content">
+                            <div className="about-content-text">
                                 <p>{aboutContent}</p>
                             </div>
                             {/* <div className="about_information">
@@ -82,20 +82,20 @@ export default class About extends Component {
                             </div> */}
 
                             <div>
-                                <Row>
-                                    <Col className="info_icon" span={4} style={{ textAlign: "left" }} md={4} sm={24} xs={24}>
-                                        <IconFont className="footer-icon-font" type='icon-personalcenterclick' style={{background:"#f00"}} />
+                                <Row type="flex" justify="space-around" align="middle">
+                                    <Col className="info_icon" span={4} md={5} sm={24} xs={24}>
+                                        <IconFont className="about-icon-font" type='icon-personalcenterclick' />
                                     </Col>
-                                    <Col className="info_text" span={20} style={{ textAlign: "left" }} md={20} sm={24} xs={24}>
+                                    <Col className="info_text" span={20} md={19} sm={24} xs={24}>
                                         <span>Name</span>
                                         <h5>aiyowei</h5>
                                     </Col>
                                 </Row>
-                                <Row>
-                                    <Col className="info_icon" span={4} style={{ textAlign: "left" }} md={4} sm={24} xs={24}>
-                                        <IconFont className="footer-icon-font" type='icon-personalcenterclick' />
+                                <Row type="flex" justify="space-around" align="middle">
+                                    <Col className="info_icon" span={4} md={4} sm={24} xs={24}>
+                                        <IconFont className="about-icon-font" type='icon-personalcenterclick' />
                                     </Col>
-                                    <Col className="info_text" span={20} style={{ textAlign: "left" }} md={20} sm={24} xs={24}>
+                                    <Col className="info_text" span={20} md={20} sm={24} xs={24}>
                                         <span>Email</span>
                                         <h5>aiyowei@fortest.com</h5>
                                     </Col>
