@@ -12,10 +12,15 @@ class index extends Component {
     };
     this.increase = this.increase.bind(this);
     this.restart = this.restart.bind(this);
+    this.stop = this.stop.bind(this);
   }
 
   componentDidMount() {
     this.increase();
+  }
+
+  componentWillUnmount() {
+    this.stop();
   }
 
   increase() {
@@ -28,6 +33,11 @@ class index extends Component {
     }
     this.setState({ percent: newPercent });
     this.tm = setTimeout(this.increase, 20);
+  }
+
+  stop() {
+    this.setState({ percent: this.state.to });
+    clearTimeout(this.tm);
   }
 
   restart() {
