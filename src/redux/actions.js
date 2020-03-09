@@ -1,13 +1,13 @@
 import { SCROLL_TO } from "./actionTypes";
 
-export const scrollTo = (scrollTo) => ({
+export const scrollToAction = (scrollTo) => ({
     type: SCROLL_TO,
     payload: {
         scrollTo
     }
 });
 
-export const scrollToTop = () => ({
+export const scrollToTopAction = () => ({
     type: SCROLL_TO,
     payload: {
         scrollTo: null

@@ -9,7 +9,7 @@ import InfiniteLoader from "react-virtualized/dist/commonjs/InfiniteLoader";
 import { reqFakeList } from "../../api";
 
 const fakeDataUrl =
-  "https://randomuser.me/api/?results=10&inc=name,gender,email,nat&noinfo";
+  "https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo";
 
 class NoteList extends Component {
   state = {
@@ -20,15 +20,22 @@ class NoteList extends Component {
   loadedRowsMap = {};
 
   componentDidMount() {
+    this.mounted = true;
     this.setState({
       loading: this.state.loading + 1
     });
     this.fetchData(res => {
-      this.setState({
-        data: res.results,
-        loading: this.state.loading - 1
-      });
+      if (this.mounted) {
+        this.setState({
+          data: res.results,
+          loading: this.state.loading - 1
+        });
+      }
     });
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
   }
 
   // fetchData = callback => {
@@ -54,24 +61,26 @@ class NoteList extends Component {
       // 1 means loading
       this.loadedRowsMap[i] = 1;
     }
-    if (data.length > 100) {
-      message.warning("Virtualized List loaded all");
-      // this.setState({
-      //   loading: loading
-      // });
-      return;
-    }
+    // if (data.length > 100) {
+    //   message.warning("Virtualized List loaded all");
+    //   // this.setState({
+    //   //   loading: loading
+    //   // });
+    //   return;
+    // }
     this.setState({
       loading: loading + 1
     });
 
     this.fetchData(res => {
-      let { data, loading } = this.state;
-      data = data.concat(res.results);
-      this.setState({
-        data,
-        loading: loading - 1
-      });
+      if (this.mounted) {
+        let { data, loading } = this.state;
+        data = data.concat(res.results);
+        this.setState({
+          data,
+          loading: loading - 1
+        });
+      }
     });
   };
 

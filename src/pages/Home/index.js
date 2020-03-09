@@ -31,6 +31,8 @@ class Home extends Component {
 
     componentDidMount() {
         console.log('Home page componentDidMount');
+        console.log(this.props.scrollTo);
+        
         // to top
         document.getElementById('root').scrollIntoView(true);
 
@@ -46,6 +48,7 @@ class Home extends Component {
 
     componentDidUpdate() {
         console.log('Home page componentDidUpdate');
+        console.log(this.props.scrollTo);
 
         const scrollTo = this.props.scrollTo
         if (scrollTo) {

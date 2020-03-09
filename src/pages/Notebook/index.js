@@ -8,7 +8,7 @@ export default class Notebook extends Component {
     return (
       <div className="notebook">
         this is Notebook page
-        <Card>
+        <Card className="note-list-container">
           <NoteList />
         </Card>
       </div>
