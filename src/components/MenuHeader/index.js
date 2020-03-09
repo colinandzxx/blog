@@ -31,6 +31,8 @@ class MenuHeader extends Component {
     }
 
     handleClick = e => {
+        console.log(e);
+        
         this.setState({
             selectedKey: e.key,
         });
@@ -48,6 +50,8 @@ class MenuHeader extends Component {
             }
         }
 
+        console.log(this.state.selectedKey);
+        
         const { staticContext, scrollTo, ...rest } = this.props;
         console.log(this.props.location.pathname);
         return (

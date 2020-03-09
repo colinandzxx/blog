@@ -29,12 +29,12 @@ class App extends Component {
           <link rel="canonical" href="http://mysite.com/example" />
         </Helmet>
         <Layout className="App">
-          <Header className="App-header"
-            style={{
-              height: '40px',
-              minWidth: '400px'
-            }}>
-          </Header>
+            <Header className="App-header"
+              style={{
+                height: '40px',
+                minWidth: '400px'
+              }}>
+            </Header>
 
           <div className="App-content">
             <Switch>

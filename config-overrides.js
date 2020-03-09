@@ -1,4 +1,4 @@
-const { override, fixBabelImports, addLessLoader, addDecoratorsLegacy, addWebpackModuleRule } = require('customize-cra');
+const { override, fixBabelImports, addLessLoader, addDecoratorsLegacy, addWebpackModuleRule, useBabelRc } = require('customize-cra');
 const theme = require('./theme')
 
 module.exports = override(
@@ -18,5 +18,7 @@ module.exports = override(
     //     use: 'raw-loader'
     // }),
 
-    addDecoratorsLegacy()    
+    addDecoratorsLegacy(),
+    
+    // useBabelRc()
 );
