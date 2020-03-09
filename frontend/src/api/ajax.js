@@ -33,12 +33,14 @@ export default function ajax(url, data = {}, type = "GET") {
           resolve(response.data);
         } else {
           // 3. 如果失败了, 不调用reject(reason), 而是提示异常信息
+          console.log(response.status);          
           message.error("请求错误码: " + response.status);
         }
       })
       .catch(error => {
         // 3. 如果失败了, 不调用reject(reason), 而是提示异常信息
         // reject(error)
+        console.log(error);
         message.error("请求出错了: " + error.message);
       });
   });

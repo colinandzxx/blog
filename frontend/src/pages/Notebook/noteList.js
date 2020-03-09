@@ -8,8 +8,7 @@ import InfiniteLoader from "react-virtualized/dist/commonjs/InfiniteLoader";
 
 import { reqFakeList } from "../../api";
 
-const fakeDataUrl =
-  "https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo";
+
 
 class NoteList extends Component {
   state = {
@@ -52,6 +51,7 @@ class NoteList extends Component {
 
   fetchData = async callback => {
     const result = await reqFakeList(5);
+    console.log(result);    
     callback(result);
   };
 
