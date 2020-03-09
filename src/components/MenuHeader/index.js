@@ -39,8 +39,6 @@ class MenuHeader extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props.location.pathname);
-    console.log(this.props.scrollTo);
     if (this.props.location.pathname) {
       if (
         this.props.location.pathname === "/" ||
@@ -54,13 +52,12 @@ class MenuHeader extends Component {
           selectedKey: key
         });
       } else {
-        let str = this.props.location.pathname
-          .slice(1)
+        let key = this.props.location.pathname
+          .slice(1) // remove '/'
           .toLowerCase()
-          .replace(/( |^)[a-z]/g, L => L.toUpperCase());
-        console.log(str);
+          .replace(/( |^)[a-z]/g, L => L.toUpperCase());    // Upper first letter
         this.setState({
-          selectedKey: str
+          selectedKey: key
         });
       }
     }
@@ -77,8 +74,6 @@ class MenuHeader extends Component {
         minWight = this.props.style.minWight;
       }
     }
-
-    console.log(this.state.selectedKey);
 
     const { staticContext, scrollTo, scrollToAction, ...rest } = this.props;
     return (
