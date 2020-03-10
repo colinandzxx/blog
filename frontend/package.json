@@ -17,6 +17,7 @@
     "react-hot-loader": "^4.12.19",
     "react-measure": "^2.3.0",
     "react-redux": "^7.2.0",
+    "react-router-config": "^5.1.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
     "react-scroll": "^1.7.16",

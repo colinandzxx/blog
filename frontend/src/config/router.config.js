@@ -1,37 +1,38 @@
-import React from 'react'
-import { BrowserRouter as Router, Route, IndexRoute, /*browserHistory,*/ Redirect, Switch } from 'react-router-dom';
-import {
-    Home,
-    Notebook,
-    NotFound
-} from '../pages';
+import React from "react";
+import { renderRoutes } from "react-router-config";
+import { Redirect } from "react-router-dom";
+import { Base, Home, Notebook, NotFound } from "../pages";
 
-export default () => (
-    // <Router history={browserHistory}>
-    <Router>
-        {/* <Route path="/" component={base.app} onEnter={isLogin}>
-            <IndexRoute component={base.example} />
-            <Route path="/desk$/index" component={base.example} /> */}
-        {/* <Route path="/socketReceive" component={base.socketReceive} /> */}
-        {/** *菜单 开始 */}
-        {/* <Route path="/echarts" component={menu.echarts} />
-            <Route path="/editor" component={menu.editor} /> */}
-        {/** *菜单 结束 */}
-        {/** *系统设置 开始 */}
-        {/* <Route path={`/${set}/userManage`} component={sysSet.userManage} />
-            <Route path={`/${set}/roleManage`} component={sysSet.roleManage} />
-            <Route path={`/${set}/moduleManage`} component={sysSet.moduleManage} /> */}
-        {/** *系统设置 结束 */}
-        {/* </Route>
-        <Route path="/login" component={base.login} />
-        <Route path="*" component={base.notfound} /> */}
+const Root = ({ route }) => <Base>{renderRoutes(route.routes)}</Base>;
 
-        <Switch>
-            <Route path='/' component={Home} exact></Route>
-            <Route path='/notebook' component={Notebook}></Route>
-            <Route path='/404' component={NotFound} />
-            <Redirect from='/home' to='/' exact></Redirect>
-            <Redirect to='/404'></Redirect>
-        </Switch>
-    </Router>
-)
+const routes = [
+  {
+    component: Root,
+    routes: [
+      {
+        path: "/",
+        exact: true,
+        component: Home
+      },
+      {
+        path: "/notebook",
+        component: Notebook
+      },
+      {
+        path: "/404",
+        component: NotFound
+      },
+      {
+        path: "/home",
+        render: () => <Redirect to={"/"} />
+      },
+      {
+        path: "*",
+        render: () => <Redirect to={"/404"} />
+      }
+    ]
+  }
+];
+
+const RootRoutes = renderRoutes(routes);
+export default RootRoutes;
