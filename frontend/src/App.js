@@ -3,12 +3,10 @@ import { Layout, Divider } from 'antd';
 import Copyright from 'copyright';
 import './App.less';
 import { Route, Redirect, Switch } from 'react-router-dom';
-
 import {
   MenuHeader as Header,
   FooterIcons,
 } from './components';
-
 import {
   Home,
   Notebook,
@@ -16,6 +14,10 @@ import {
 } from './pages';
 
 import { Helmet } from "react-helmet";
+
+// import Routes from './config/router.config';
+// import { hot } from 'react-hot-loader/root'
+// const HotRoutes = hot(Routes)
 
 const { Footer } = Layout;
 
@@ -29,12 +31,12 @@ class App extends Component {
           <link rel="canonical" href="http://mysite.com/example" />
         </Helmet>
         <Layout className="App">
-            <Header className="App-header"
-              style={{
-                height: '40px',
-                minWidth: '400px'
-              }}>
-            </Header>
+          <Header className="App-header"
+            style={{
+              height: '40px',
+              minWidth: '400px'
+            }}>
+          </Header>
 
           <div className="App-content">
             <Switch>
