@@ -20,5 +20,5 @@ module.exports = override(
 
     addDecoratorsLegacy(),
     
-    useBabelRc()
+    // useBabelRc()
 );
