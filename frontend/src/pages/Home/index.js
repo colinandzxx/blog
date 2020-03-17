@@ -39,7 +39,7 @@ class Home extends Component {
         const scrollTo = this.props.scrollTo
         if (scrollTo) {
             scroller.scrollTo(scrollTo, {
-                duration: 800,
+                duration: 2000,
                 delay: 0,
                 smooth: 'easeInOutQuart'
             });
