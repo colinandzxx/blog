@@ -1,6 +1,6 @@
 @echo off
 
-set "VIRTUAL_ENV=F:\workspace\react\blog-backend\env"
+set "VIRTUAL_ENV=F:\workspace\react\blog\backend\env"
 
 if defined _OLD_VIRTUAL_PROMPT (
     set "PROMPT=%_OLD_VIRTUAL_PROMPT%"
