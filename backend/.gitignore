@@ -11,3 +11,8 @@ Desktop.ini
 dist
 build
 
+# Environments
+.env/
+.venv/
+env/
+venv/
