@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from post.models import Post
+from .models import Post
 
 
 class PostListSerializer(serializers.ModelSerializer):

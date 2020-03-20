@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
 
     # self
-    'post'
+    'apps.post',
+    'apps.user'
 ]
 
 MIDDLEWARE = [
@@ -63,6 +64,14 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'blog.urls'
+
+# AUTHENTICATION_BACKENDS = (
+#     # Needed to login by username in Django admin, regardless of `allauth`
+#     'django.contrib.auth.backends.ModelBackend',
+
+#     # `allauth` specific authentication methods, such as login by e-mail
+#     'allauth.account.auth_backends.AuthenticationBackend',
+# )
 
 TEMPLATES = [
     {
@@ -142,9 +151,27 @@ SITE_ID = 1
 # }
 
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-#     ),
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}
 
-# }
+# registor
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_REQUIRED = True
+
+# mail
+EMAIL_HOST = "smtp.qq.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "31330744@qq.com"
+EMAIL_HOST_PASSWORD = "jnpgeboljrxzbijb"          # 这个不是邮箱密码，而是授权码
+EMAIL_USE_TLS = True                        # 这里必须是 True，否则发送不成功
+EMAIL_FROM = "31330744@qq.com"           # 发件人
+# 默认发件人(如果不添加DEFAULT_FROM_EMAIL字段可能会导致如下错误: 451, b'Sender address format error.', 'webmaster@localhost')
+DEFAULT_FROM_EMAIL = "test blog <31330744@qq.com>"
+
+
+AUTH_USER_MODEL = 'user.User'

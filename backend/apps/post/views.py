@@ -1,7 +1,7 @@
 from rest_framework import generics
 
 from .serializers import PostListSerializer, PostDetailSerializer
-from post.models import Post
+from .models import Post
 
 
 class PostListView(generics.ListAPIView):
