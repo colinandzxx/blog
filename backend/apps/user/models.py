@@ -31,7 +31,7 @@ class User(AbstractUser):
     user_image = models.URLField(null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return self.username
 
     # meta信息，即后台栏目名
     class Meta:

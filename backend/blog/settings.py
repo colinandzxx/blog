@@ -25,7 +25,7 @@ SECRET_KEY = '!!qpjpds6t+&ifzt0+7_n5&u^b_wkmf@kvjm0lh5opv0@u_v!&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -175,3 +175,9 @@ DEFAULT_FROM_EMAIL = "test blog <31330744@qq.com>"
 
 
 AUTH_USER_MODEL = 'user.User'
+
+# 语言改为中文
+# LANGUAGE_CODE = 'zh-hans'
+
+# 时区改为上海
+TIME_ZONE = 'Asia/Shanghai'

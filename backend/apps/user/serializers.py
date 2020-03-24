@@ -25,15 +25,23 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserSignUpSerializer(serializers.ModelSerializer):
-    password1 = serializers.SerializerMethodField()
+    confirm_password = serializers.CharField(
+        allow_blank=False, write_only=True)
 
     class Meta:
         model = User
+        fields = ['username', 'email', 'password', 'confirm_password']
+        # read_only_fields = ['is_staff', 'is_superuser']
+        # write_only_fields = ['password' 'confirm_password']
 
-        password1 = db.models.CharField(
-            max_length=32)
-
-        fields = ['username', 'email', 'password', 'password1', 'mobile']
+    def validate(self, data):
+        """
+        Checks to be sure that the received password and confirm_password
+        fields are exactly the same
+        """
+        if data['password'] != data.pop('confirm_password'):
+            raise serializers.ValidationError("Passwords do not match")
+        return data
 
     def create(self, validated_data):
         if not id:

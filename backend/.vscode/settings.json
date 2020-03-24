@@ -1,3 +1,12 @@
 {
-    "python.pythonPath": "env\\Scripts\\python.exe"
+    "python.pythonPath": ".env/bin/python",
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/*/**": true,
+        "**/.env/*/**": true,
+        "**/.venv/*/**": true,
+        "**/env/*/**": true,
+        "**/venv/*/**": true,
+    }
 }
