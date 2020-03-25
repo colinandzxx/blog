@@ -39,13 +39,13 @@ class UserSignUpSerializer(serializers.ModelSerializer):
         Checks to be sure that the received password and confirm_password
         fields are exactly the same
         """
+        if not id:
+            raise serializers.ValidationError("Id is null")
         if data['password'] != data.pop('confirm_password'):
             raise serializers.ValidationError("Passwords do not match")
         return data
 
     def create(self, validated_data):
-        if not id:
-            print('id is null')
         password = validated_data.pop('password')
         user_instance = User.objects.create(**validated_data)
         user_instance.set_password(password)
