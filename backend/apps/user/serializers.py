@@ -49,5 +49,6 @@ class UserSignUpSerializer(serializers.ModelSerializer):
         password = validated_data.pop('password')
         user_instance = User.objects.create(**validated_data)
         user_instance.set_password(password)
+        user_instance.is_active = False
         user_instance.save()
         return user_instance

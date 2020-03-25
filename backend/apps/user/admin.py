@@ -5,15 +5,17 @@ from .forms import UserSignupForm
 
 
 class UserAdmin(BaseUserAdmin):
+    model = User
+    # form = UserChangeForm
     add_form = UserSignupForm
 
-    list_display = ('username', 'email', 'phone', 'is_admin')
-    list_filter = ('is_admin',)
+    list_display = ('username', 'email', 'mobile', 'is_active')
+    list_filter = ('is_active', 'is_staff', 'is_superuser')
 
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('username', 'email', 'phone', 'password1', 'password2')}
+            'fields': ('username', 'email', 'mobile', 'password', 'confirm_password')}
          ),
     )
     search_fields = ('email',)
@@ -21,4 +23,4 @@ class UserAdmin(BaseUserAdmin):
     filter_horizontal = ()
 
 
-admin.site.register(User, BaseUserAdmin)
+admin.site.register(User, UserAdmin)

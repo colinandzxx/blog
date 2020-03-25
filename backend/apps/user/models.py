@@ -11,8 +11,6 @@ class User(AbstractUser):
     )
 
     id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4)
-    # name = models.CharField(
-    #     max_length=60, unique=True, verbose_name='account name', default='')    
     email = models.EmailField(unique=True, default='')
     gender = models.CharField(
         max_length=6,
