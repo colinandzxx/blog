@@ -4,18 +4,30 @@ from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from rest_framework import viewsets, mixins, status, permissions, generics
 from rest_framework.response import Response
 
+from rest_framework.permissions import IsAuthenticated
+from apps.utils.permissions import IsOwnerOrReadOnly
+
 from .models import User
 from .serializers import UserSerializer, UserSignUpSerializer
 from .forms import UserSignupForm
 
 
 # class UserGetAllInfo(mixins.ListModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
-class UserGetAllInfoView(generics.ListAPIView):
+# class UserGetAllInfoView(generics.ListAPIView):
+class UserGetAllInfoView(mixins.ListModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    # authentication_classes = [
-    #     JSONWebTokenAuthentication, SessionAuthentication]
+    authentication_classes = [
+        JSONWebTokenAuthentication, SessionAuthentication]
     # pagination_class = StandardResultsSetPagination
+
+    def get_permissions(self):
+        if self.action == 'list':
+            return []
+        elif self.action == 'retrieve':
+            return []
+        else:
+            return [IsAuthenticated(), IsOwnerOrReadOnly()]
 
 
 class UserSignupView(generics.CreateAPIView):
@@ -57,7 +69,7 @@ class UserSignupView(generics.CreateAPIView):
 
             # 跳转到登录页面
             # return render(request, "login.html", )
-            
+
             serializer = UserSignUpSerializer(data=request.data)
             if serializer.is_valid(raise_exception=True):
                 serializer.save()

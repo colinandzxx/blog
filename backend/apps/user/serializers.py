@@ -8,8 +8,8 @@ class UserSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         res = super().to_representation(instance=instance)
         access = []
-        if res['is_staff'] == True:
-            access.append('is_staff')
+        if res['is_active'] == True:
+            access.append('is_active')
         if res['is_superuser'] == True:
             access.append('is_superuser')
         res.setdefault('access', access)
@@ -20,7 +20,8 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'email',
+        # 'mobile', 'nick_name', 'info', 'user_imag', 'user_image'
+        fields = ['id', 'username', 'email', 
                   'is_active', 'is_staff', 'is_superuser']
 
 
