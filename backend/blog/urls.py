@@ -20,27 +20,19 @@ from rest_framework_jwt.views import obtain_jwt_token
 
 from rest_framework import routers
 
-from apps.user.views import UserGetAllInfoView
+# from apps.user.views import UserGetAllInfoView
 
 router = routers.DefaultRouter()
-router.register('users', UserGetAllInfoView)
+# router.register('users', UserGetAllInfoView)
 
 urlpatterns = [
     # path('accounts/', include('allauth.urls')),
     path('admin/', admin.site.urls),
     path('user/', include('apps.user.urls')),
-
-    # path('auth/', include('rest_auth.urls')),
-    # path('auth/registration/', include('rest_auth.registration.urls')),
-
-    # # path('auth/registration/', RegisterView.as_view(), name='account_signup'),
-    # re_path(r'^account-confirm-email/$', VerifyEmailView.as_view(),
-    #         name='account_email_verification_sent'),
-    # re_path(r'^account-confirm-email/(?P<key>[-:\w]+)/$', VerifyEmailView.as_view(),
-    #         name='account_confirm_email'),
+    path('auth/', include('rest_auth.urls')),
 
     path('posts/', include('apps.post.urls')),
 
-    path('login/', obtain_jwt_token),
-    path('api/', include(router.urls)),
+    # path('login/', obtain_jwt_token),
+    # path('api/', include(router.urls)),
 ]

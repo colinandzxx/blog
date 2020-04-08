@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework.authentication import SessionAuthentication
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework import viewsets, mixins, status, permissions, generics
 from rest_framework.response import Response
 
@@ -13,21 +14,22 @@ from .forms import UserSignupForm
 
 
 # class UserGetAllInfo(mixins.ListModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
-# class UserGetAllInfoView(generics.ListAPIView):
-class UserGetAllInfoView(mixins.ListModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
+# class UserGetAllInfoView(mixins.ListModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
+class UserGetAllInfoView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    authentication_classes = [
-        JSONWebTokenAuthentication, SessionAuthentication]
+    permission_classes = [IsAuthenticated, ]
+    # authentication_classes = [
+    #     JSONWebTokenAuthentication, SessionAuthentication]
     # pagination_class = StandardResultsSetPagination
 
-    def get_permissions(self):
-        if self.action == 'list':
-            return []
-        elif self.action == 'retrieve':
-            return []
-        else:
-            return [IsAuthenticated(), IsOwnerOrReadOnly()]
+    # def get_permissions(self):
+    #     if self.action == 'list':
+    #         return []
+    #     elif self.action == 'retrieve':
+    #         return []
+    #     else:
+    #         return [IsAuthenticated(), IsOwnerOrReadOnly()]
 
 
 class UserSignupView(generics.CreateAPIView):
