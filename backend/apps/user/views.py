@@ -19,8 +19,9 @@ class UserGetAllInfoView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated, ]
-    # authentication_classes = [
-    #     JSONWebTokenAuthentication, SessionAuthentication]
+    authentication_classes = [
+        JSONWebTokenAuthentication, SessionAuthentication]
+    ordering = 'id'
     # pagination_class = StandardResultsSetPagination
 
     # def get_permissions(self):
