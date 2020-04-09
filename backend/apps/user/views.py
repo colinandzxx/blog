@@ -4,9 +4,12 @@ from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework import viewsets, mixins, status, permissions, generics
 from rest_framework.response import Response
-
+from django.http import Http404, HttpResponse, JsonResponse, HttpResponseRedirect
 from rest_framework.permissions import IsAuthenticated
+
 from apps.utils.permissions import IsOwnerOrReadOnly
+from apps.utils.EmailToken import token_confirm
+from apps.utils.tasks import send_register_email
 
 from .models import User
 from .serializers import UserSerializer, UserSignUpSerializer
@@ -23,14 +26,6 @@ class UserGetAllInfoView(generics.ListAPIView):
         JSONWebTokenAuthentication, SessionAuthentication]
     ordering = 'id'
     # pagination_class = StandardResultsSetPagination
-
-    # def get_permissions(self):
-    #     if self.action == 'list':
-    #         return []
-    #     elif self.action == 'retrieve':
-    #         return []
-    #     else:
-    #         return [IsAuthenticated(), IsOwnerOrReadOnly()]
 
 
 class UserSignupView(generics.CreateAPIView):
@@ -76,10 +71,12 @@ class UserSignupView(generics.CreateAPIView):
             serializer = UserSignUpSerializer(data=request.data)
             if serializer.is_valid(raise_exception=True):
                 serializer.save()
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+            username = request.POST.get("username", "")
+            email = request.POST.get("email", "")
+            token = token_confirm.generate_validate_token(username)
+            send_register_email.delay(
+                email=email, username=username, token=token)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         # 注册邮箱form验证失败
-        else:
-            # return render(
-            #     request, "register.html", {
-            #         "register_form": register_form})
-            return Response(sigup_form.errors, status=status.HTTP_400_BAD_REQUEST)
+        return JsonResponse({'status': 400, 'data': sigup_form.errors, 'valid': False})
