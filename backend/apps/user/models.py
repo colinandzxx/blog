@@ -36,3 +36,5 @@ class User(AbstractUser):
         verbose_name = "user info"
         verbose_name_plural = "users info"
         # 获取用户未读消息的数量
+        
+        ordering = ['-id']

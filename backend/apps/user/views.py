@@ -20,11 +20,12 @@ from .forms import UserSignupForm
 # class UserGetAllInfoView(mixins.ListModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
 class UserGetAllInfoView(generics.ListAPIView):
     queryset = User.objects.all()
+    # queryset = User.objects.get_queryset().order_by('id')
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated, ]
     authentication_classes = [
         JSONWebTokenAuthentication, SessionAuthentication]
-    ordering = 'id'
+    # ordering = 'username'
     # pagination_class = StandardResultsSetPagination
 
 
@@ -76,6 +77,7 @@ class UserSignupView(generics.CreateAPIView):
             email = request.POST.get("email", "")
             token = token_confirm.generate_validate_token(username)
             send_register_email.delay(
+            # send_register_email(
                 email=email, username=username, token=token)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         # 注册邮箱form验证失败

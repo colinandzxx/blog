@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
+import djcelery
 import os
 import datetime
 
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'djcelery',
 
     # self
     'apps.post',
@@ -190,3 +192,18 @@ AUTH_USER_MODEL = 'user.User'
 
 # 时区改为上海
 TIME_ZONE = 'Asia/Shanghai'
+
+
+###### django-celery start ######
+djcelery.setup_loader()
+BROKER_URL = 'redis://127.0.0.1:6379/6'
+CELERY_IMPORTS = ('apps.utils.tasks', )
+CELERY_TIMEZONE = TIME_ZONE
+CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
+CELERYD_MAX_TASKS_PER_CHILD = 2  # 每个worker执行了多少任务就会销毁，防止内存泄露，默认是无限的
+# 设置并发的worker数量
+CELERYD_CONCURRENCY = 2
+# 有些情况可以防止死锁
+CELERY_FORCE_EXECV = True
+CELERY_ENABLE_UTC = True
+###### django-celery end ######
