@@ -20,6 +20,8 @@ from rest_framework_jwt.views import obtain_jwt_token
 
 from rest_framework import routers
 
+from apps.user.views import active_user
+
 # from apps.user.views import UserGetAllInfoView
 
 router = routers.DefaultRouter()
@@ -30,6 +32,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('apps.user.urls')),
     path('auth/', include('rest_auth.urls')),
+    path('activate/<str:token>', active_user, name='active_user'),
 
     path('posts/', include('apps.post.urls')),
 

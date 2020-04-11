@@ -174,7 +174,7 @@ REST_FRAMEWORK = {
 # ACCOUNT_EMAIL_REQUIRED = False
 
 # mail
-DOMAIN = 'https://www.xxxx.com'  # 用户验证邮箱访问地址
+DOMAIN = 'http://127.0.0.1:8000'  # 用户验证邮箱访问地址
 EMAIL_HOST = "smtp.qq.com"
 EMAIL_PORT = 587
 EMAIL_HOST_USER = "31330744@qq.com"

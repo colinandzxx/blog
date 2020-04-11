@@ -77,8 +77,44 @@ class UserSignupView(generics.CreateAPIView):
             email = request.POST.get("email", "")
             token = token_confirm.generate_validate_token(username)
             send_register_email.delay(
-            # send_register_email(
+                # send_register_email(
                 email=email, username=username, token=token)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return JsonResponse({'valid': True, 'status': 200, 'message': u"请登录到注册邮箱中验证用户，有效期为1个小时"})
         # 注册邮箱form验证失败
-        return JsonResponse({'status': 400, 'data': sigup_form.errors, 'valid': False})
+        return JsonResponse({'valid': False, 'status': 400, 'data': sigup_form.errors})
+
+
+# 激活验证
+def active_user(request, token):
+    try:
+        username = token_confirm.confirm_validate_token(token)
+    except:
+        username = token_confirm.remove_validate_token(token)
+        users = User.objects.filter(username=username)
+        for user in users:
+            if user.is_active == False:
+                user.delete()
+                # return render(request, 'pc/message.html', {'message': u'对不起，验证链接已经过期，请重新<a href=\"' + unicode(settings.DOMAIN) + u'/register\">注册</a>'})
+                return JsonResponse({'valid': False, 'status': 2300, 'message': u'对不起，验证链接已经过期，请重新注册'})
+            else:
+                # return render(request, 'pc/message.html', {'message': u'此账号已经验证过，请重新<a href=\"' + unicode(settings.DOMAIN) + u'/register\">注册</a>'})
+                return JsonResponse({'valid': False, 'status': 2301, 'message': u'此账号已经验证过，请重新注册'})
+    try:
+        user = User.objects.get(username=username)
+    except User.DoesNotExist:
+        # return render(request, 'pc/message.html', {'message': u'对不起，您所验证的用户不存在，请重新<a href=\"/register\">注册</a>'})
+        return JsonResponse({'valid': False, 'status': 2004, 'message': u'对不起，您所验证的用户不存在，请重新注册'})
+    user.is_active = True
+    user.save()
+    # msg = UserMessage()
+    # msg.user = user
+    # msg.to_user = User.objects.get(is_superuser=True)
+    # msg.message = '欢迎加入本站,在使用过程中有什么疑问,请联系管理员'
+    # msg.has_read = False
+    # msg.is_supper = True
+    # msg.save()
+    # message = u'验证成功，请进行<a href=\"' + \
+    #     unicode(settings.DOMAIN) + u'/login\">登录</a>操作'
+
+    # return render(request, 'pc/message.html', {'message': message})
+    return JsonResponse({'valid': True, 'status': 200, 'message': u'验证成功，请登录'})
